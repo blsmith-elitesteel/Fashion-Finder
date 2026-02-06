@@ -1,0 +1,17 @@
+{
+  "name": "fashion-finder",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Search 13 fashion stores at once - Princess Polly, Lulus, Nordstrom & more",
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "vercel-build": "cd frontend && npm install && npm run build"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12"
+  },
+  "keywords": ["shopping", "fashion", "aggregator"],
+  "license": "MIT"
+}

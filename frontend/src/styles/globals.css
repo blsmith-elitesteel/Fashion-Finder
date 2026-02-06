@@ -1,0 +1,576 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles */
+@layer base {
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #1F2937;
+    background-color: #FDF8F5;
+    background-image: linear-gradient(135deg, #FDF8F5 0%, #FFF5F5 50%, #FDF8F5 100%);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 500;
+  }
+  
+  button, a, input, select, textarea {
+    touch-action: manipulation;
+  }
+}
+
+/* Custom components */
+@layer components {
+  .btn-primary {
+    @apply bg-rose text-white font-medium px-6 py-3 rounded-full 
+           hover:bg-opacity-90 transition-all duration-300 
+           shadow-soft hover:shadow-hover transform hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-rose focus:ring-offset-2;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-charcoal font-medium px-5 py-2.5 rounded-full
+           border border-gray-200 hover:border-rose hover:text-rose
+           transition-all duration-300 shadow-soft hover:shadow-card;
+  }
+  
+  .card {
+    @apply bg-white rounded-2xl shadow-card overflow-hidden
+           transition-all duration-300 hover:shadow-hover;
+  }
+  
+  .card-fashion {
+    @apply bg-white rounded-3xl shadow-soft overflow-hidden
+           transition-all duration-500 hover:shadow-glow
+           border border-gray-100/50;
+  }
+  
+  .input-field {
+    @apply w-full px-5 py-4 rounded-full border border-gray-200
+           focus:outline-none focus:border-rose focus:ring-2 focus:ring-rose/20
+           transition-all duration-300 bg-white shadow-soft
+           placeholder:text-warmGray/60 font-body;
+  }
+  
+  .store-tag {
+    @apply inline-flex items-center gap-2 px-4 py-2.5 rounded-full
+           text-sm font-medium transition-all duration-300
+           border-2 cursor-pointer select-none;
+  }
+  
+  .store-tag-active {
+    @apply bg-opacity-10 border-current shadow-sm;
+  }
+  
+  .store-tag-inactive {
+    @apply bg-white border-gray-200 text-warmGray
+           hover:border-gray-300 hover:text-charcoal;
+  }
+  
+  .category-pill {
+    @apply inline-flex items-center gap-1.5 px-4 py-2 rounded-full
+           text-sm font-medium transition-all duration-300
+           cursor-pointer select-none whitespace-nowrap;
+  }
+  
+  .category-pill-active {
+    @apply bg-rose text-white shadow-md;
+  }
+  
+  .category-pill-inactive {
+    @apply bg-white text-warmGray border border-gray-200
+           hover:border-rose hover:text-rose;
+  }
+  
+  /* Shimmer loading effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      #f5f5f5 25%,
+      #ebebeb 50%,
+      #f5f5f5 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+  
+  /* Fashion image hover effect */
+  .fashion-image {
+    @apply transition-transform duration-700 ease-out;
+  }
+  
+  .fashion-image:hover {
+    @apply scale-105;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Decorative pattern */
+.pattern-dots {
+  background-image: radial-gradient(#e5e5e5 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Elegant scroll indicator */
+.scroll-indicator {
+  background: linear-gradient(to right, transparent, rgba(251, 113, 133, 0.1), transparent);
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ============================================
+   MOBILE-OPTIMIZED CSS ANIMATIONS
+   Replace Framer Motion JS-driven animations
+   with GPU-composited CSS for 60fps on iPhone
+   ============================================ */
+
+/* Product card scroll-triggered entrance */
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+.product-card-enter {
+  opacity: 0;
+  transform: translateY(16px) translateZ(0);
+}
+
+.product-card-visible {
+  animation: cardEnter 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Sale badge pop-in */
+@keyframes saleBadgePop {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-12deg);
+  }
+  60% {
+    transform: scale(1.1) rotate(-12deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-12deg);
+  }
+}
+
+.sale-badge-pop {
+  animation: saleBadgePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+/* Category pills mount animation (single fade, not per-pill stagger) */
+@keyframes pillsEnter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.category-pills-enter {
+  animation: pillsEnter 0.3s ease-out;
+}
+
+/* Loading state animations */
+@keyframes loadingBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.loading-bounce {
+  animation: loadingBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingHeaderEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loading-header-enter {
+  animation: loadingHeaderEnter 0.4s ease-out;
+}
+
+@keyframes loadingSectionEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loading-section-enter {
+  animation: loadingSectionEnter 0.4s ease-out 0.2s both;
+}
+
+/* Skeleton card stagger entrance */
+@keyframes skeletonCardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.skeleton-card-enter {
+  animation: skeletonCardEnter 0.35s ease-out both;
+}
+
+/* Image zoom modal child animations */
+@keyframes zoomHeaderEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.zoom-header-enter {
+  animation: zoomHeaderEnter 0.3s ease-out 0.1s both;
+}
+
+@keyframes zoomFooterEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.zoom-footer-enter {
+  animation: zoomFooterEnter 0.3s ease-out 0.15s both;
+}
+
+/* Scroll-to-top button */
+@keyframes scrollTopEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scrollTopExit {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* Generic fade-slide for sections */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-slide-up {
+  animation: fadeSlideUp 0.4s ease-out;
+}
+
+/* Touch device specific styles */
+/* Show favorite button on touch devices (no hover) */
+@media (hover: none) and (pointer: coarse) {
+  .touch-device-visible {
+    opacity: 1 !important;
+  }
+  
+  /* Make tap targets larger on touch devices */
+  .touch-device-visible button {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+/* PWA standalone mode adjustments */
+@media all and (display-mode: standalone) {
+  /* Add safe area padding for notched devices */
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  /* Ensure header doesn't overlap status bar */
+  header {
+    padding-top: calc(0.5rem + env(safe-area-inset-top));
+  }
+}
+
+/* Improve pull-to-refresh behavior */
+html {
+  overscroll-behavior-y: contain;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .shimmer {
+    animation: none;
+    background: #f5f5f5;
+  }
+  
+  /* Skip entrance animations — show immediately */
+  .product-card-enter,
+  .product-card-visible,
+  .skeleton-card-enter,
+  .loading-bounce,
+  .loading-header-enter,
+  .loading-section-enter,
+  .zoom-header-enter,
+  .zoom-footer-enter,
+  .category-pills-enter,
+  .sale-badge-pop,
+  .fade-slide-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Safe area utilities for notched devices */
+.pb-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.pt-safe {
+  padding-top: max(0.5rem, env(safe-area-inset-top));
+}
+
+/* Touch pinch zoom support */
+.touch-pinch-zoom {
+  touch-action: pinch-zoom pan-x pan-y;
+}
+
+/* ============================================
+   DARK MODE STYLES
+   ============================================ */
+
+/* Dark mode color variables */
+:root {
+  --bg-primary: #FDF8F5;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --text-primary: #1F2937;
+  --text-secondary: #6B7280;
+  --border-color: #E5E7EB;
+  --rose: #E11D48;
+}
+
+.dark {
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #1a1a1a;
+  --bg-card: #1f1f1f;
+  --text-primary: #f5f5f5;
+  --text-secondary: #a1a1aa;
+  --border-color: #2d2d2d;
+  --rose: #fb7185;
+}
+
+/* Dark mode body */
+.dark body {
+  background-color: var(--bg-primary);
+  background-image: none;
+  color: var(--text-primary);
+}
+
+/* Dark mode cards */
+.dark .card-fashion {
+  background-color: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+.dark .card-fashion:hover {
+  box-shadow: 0 10px 40px -10px rgba(251, 113, 133, 0.2);
+}
+
+/* Dark mode inputs */
+.dark .input-field {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.dark .input-field::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Dark mode header */
+.dark header {
+  background-color: rgba(15, 15, 15, 0.9);
+  border-color: var(--border-color);
+}
+
+/* Dark mode store tags */
+.dark .store-tag-inactive {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+/* Dark mode category pills */
+.dark .category-pill-inactive {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+/* Dark mode text colors */
+.dark .text-charcoal {
+  color: var(--text-primary);
+}
+
+.dark .text-warmGray {
+  color: var(--text-secondary);
+}
+
+/* Dark mode backgrounds */
+.dark .bg-cream,
+.dark .bg-cream\/90 {
+  background-color: var(--bg-primary);
+}
+
+.dark .bg-white,
+.dark .bg-white\/50,
+.dark .bg-white\/80,
+.dark .bg-white\/90 {
+  background-color: var(--bg-secondary);
+}
+
+.dark .bg-blush\/20,
+.dark .bg-blush\/30 {
+  background-color: rgba(251, 113, 133, 0.1);
+}
+
+/* Dark mode borders */
+.dark .border-gray-100,
+.dark .border-gray-200,
+.dark .border-blush\/30,
+.dark .border-blush\/50 {
+  border-color: var(--border-color);
+}
+
+/* Dark mode shimmer */
+.dark .shimmer {
+  background: linear-gradient(
+    90deg,
+    #1f1f1f 25%,
+    #2d2d2d 50%,
+    #1f1f1f 75%
+  );
+  background-size: 200% 100%;
+}
+
+/* Dark mode shadows */
+.dark .shadow-soft,
+.dark .shadow-card {
+  box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode alerts */
+.dark .bg-amber-50 {
+  background-color: rgba(245, 158, 11, 0.1);
+}
+
+.dark .bg-green-50 {
+  background-color: rgba(34, 197, 94, 0.1);
+}
+
+/* Dark mode price colors */
+.dark .text-rose {
+  color: var(--rose);
+}
+
+.dark .bg-rose {
+  background-color: var(--rose);
+}

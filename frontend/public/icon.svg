@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE4E6"/>
+      <stop offset="50%" style="stop-color:#FB7185"/>
+      <stop offset="100%" style="stop-color:#F43F5E"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <!-- Dress icon -->
+  <g transform="translate(128, 80) scale(1.0)">
+    <!-- Dress body -->
+    <path d="M128 0 L160 40 L180 40 L180 80 L220 300 L36 300 L76 80 L76 40 L96 40 Z" 
+          fill="white" 
+          stroke="white" 
+          stroke-width="4"
+          stroke-linejoin="round"/>
+    <!-- Neckline detail -->
+    <ellipse cx="128" cy="50" rx="30" ry="15" fill="none" stroke="#FB7185" stroke-width="4"/>
+    <!-- Waist belt -->
+    <rect x="60" y="120" width="136" height="16" rx="4" fill="#FB7185"/>
+    <!-- Skirt pleats -->
+    <line x1="90" y1="150" x2="70" y2="290" stroke="#FFE4E6" stroke-width="3"/>
+    <line x1="128" y1="150" x2="128" y2="290" stroke="#FFE4E6" stroke-width="3"/>
+    <line x1="166" y1="150" x2="186" y2="290" stroke="#FFE4E6" stroke-width="3"/>
+  </g>
+  <!-- Sparkle decorations -->
+  <g fill="#FFF" opacity="0.9">
+    <circle cx="100" cy="420" r="8"/>
+    <circle cx="412" cy="100" r="6"/>
+    <circle cx="380" cy="400" r="10"/>
+    <path d="M420 200 L425 210 L435 210 L427 218 L430 228 L420 222 L410 228 L413 218 L405 210 L415 210 Z"/>
+  </g>
+</svg>

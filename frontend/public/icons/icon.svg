@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="102" fill="#E11D48"/>
+  
+  <!-- Dress shape -->
+  <g fill="white">
+    <!-- Top/bodice -->
+    <path d="M180 140 L332 140 L300 220 L212 220 Z"/>
+    <!-- Skirt -->
+    <path d="M212 220 L300 220 L360 400 L152 400 Z"/>
+    <!-- Neckline cutout -->
+    <ellipse cx="256" cy="145" rx="30" ry="20" fill="#E11D48"/>
+  </g>
+  
+  <!-- Subtle sparkle -->
+  <circle cx="380" cy="120" r="8" fill="white" opacity="0.6"/>
+  <circle cx="400" cy="150" r="5" fill="white" opacity="0.4"/>
+</svg>

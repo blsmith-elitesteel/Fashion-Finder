@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    
+    <!-- Basic Meta -->
+    <meta name="description" content="Search 13 fashion stores at once - Princess Polly, Lulus, Nordstrom, ASOS & more" />
+    <meta name="theme-color" content="#FB7185" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+    
+    <!-- iOS PWA Meta Tags - CRITICAL for Add to Home Screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Fashion Finder" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    
+    <!-- Prevent iOS text size adjust -->
+    <meta name="apple-touch-fullscreen" content="yes" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+    
+    <!-- Apple Touch Icons - MUST be PNG for iOS -->
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180x180.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167x167.png" />
+    
+    <!-- iOS Splash Screens - for seamless launch experience -->
+    <!-- iPhone SE, 8, 7, 6s, 6 (750x1334) -->
+    <link rel="apple-touch-startup-image" 
+          href="/splash/apple-splash-750x1334.png"
+          media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" />
+    <!-- iPhone 8 Plus, 7 Plus, 6s Plus, 6 Plus (1242x2208) -->
+    <link rel="apple-touch-startup-image" 
+          href="/splash/apple-splash-1242x2208.png"
+          media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)" />
+    <!-- iPhone X, XS, 11 Pro, 12 mini, 13 mini (1125x2436) -->
+    <link rel="apple-touch-startup-image" 
+          href="/splash/apple-splash-1125x2436.png"
+          media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" />
+    <!-- iPhone XR, 11 (828x1792) -->
+    <link rel="apple-touch-startup-image" 
+          href="/splash/apple-splash-828x1792.png"
+          media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" />
+    <!-- iPhone XS Max, 11 Pro Max (1242x2688) -->
+    <link rel="apple-touch-startup-image" 
+          href="/splash/apple-splash-1242x2688.png"
+          media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" />
+    <!-- iPhone 12, 12 Pro, 13, 13 Pro, 14 (1170x2532) -->
+    <link rel="apple-touch-startup-image" 
+          href="/splash/apple-splash-1170x2532.png"
+          media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)" />
+    <!-- iPhone 12 Pro Max, 13 Pro Max, 14 Plus (1284x2778) -->
+    <link rel="apple-touch-startup-image" 
+          href="/splash/apple-splash-1284x2778.png"
+          media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3)" />
+    <!-- iPhone 14 Pro (1179x2556) -->
+    <link rel="apple-touch-startup-image" 
+          href="/splash/apple-splash-1179x2556.png"
+          media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3)" />
+    <!-- iPhone 14 Pro Max, 15 Plus, 15 Pro Max (1290x2796) -->
+    <link rel="apple-touch-startup-image" 
+          href="/splash/apple-splash-1290x2796.png"
+          media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)" />
+    <!-- iPhone 15, 15 Pro (1179x2556) - same as 14 Pro -->
+    <link rel="apple-touch-startup-image" 
+          href="/splash/apple-splash-1179x2556.png"
+          media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3)" />
+    
+    <title>Fashion Finder - Shop 13 Stores</title>
+    
+    <!-- Google Fonts - preconnect for speed -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+    
+    <!-- Critical styles to prevent black/white flash -->
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body, #root {
+        min-height: 100vh;
+        min-height: 100dvh; /* Dynamic viewport height for iOS */
+        min-height: -webkit-fill-available;
+      }
+      html {
+        height: -webkit-fill-available;
+        /* Prevent pull-to-refresh in standalone mode */
+        overscroll-behavior-y: contain;
+      }
+      body {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #FDF8F5;
+        color: #1F2937;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        /* Safe area padding for notched devices */
+        padding-top: env(safe-area-inset-top);
+        padding-right: env(safe-area-inset-right);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        /* Prevent overscroll bounce in standalone */
+        overscroll-behavior-y: contain;
+        /* Disable text selection for app-like feel */
+        -webkit-user-select: none;
+        user-select: none;
+        /* Prevent callout on long press */
+        -webkit-touch-callout: none;
+      }
+      /* Re-enable text selection for inputs */
+      input, textarea, [contenteditable] {
+        -webkit-user-select: text;
+        user-select: text;
+      }
+      /* Dark mode support */
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #0f0f0f;
+          color: #f5f5f5;
+        }
+      }
+      /* Loading fallback with brand feel */
+      #root:empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        height: 100dvh;
+        background: linear-gradient(135deg, #FDF8F5 0%, #FEE2E2 100%);
+      }
+      @media (prefers-color-scheme: dark) {
+        #root:empty {
+          background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+        }
+      }
+      #root:empty::before {
+        content: '👗';
+        font-size: 72px;
+        animation: bounce 1s ease-in-out infinite;
+      }
+      #root:empty::after {
+        content: 'Fashion Finder';
+        margin-top: 16px;
+        font-family: 'Playfair Display', serif;
+        font-size: 24px;
+        font-weight: 600;
+        color: #E11D48;
+        opacity: 0;
+        animation: fadeIn 0.5s ease-out 0.3s forwards;
+      }
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+      }
+      @keyframes fadeIn {
+        to { opacity: 1; }
+      }
+      /* Standalone mode adjustments */
+      @media all and (display-mode: standalone) {
+        body {
+          /* Extra bottom padding for home indicator */
+          padding-bottom: max(env(safe-area-inset-bottom), 20px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
